@@ -1,0 +1,41 @@
+<h1 (click)="getGreet()">{{title}}</h1>
+<div>
+  <button class="btn btn-success" (click)="getHeroes()">Get all heroes</button>
+</div>
+
+<div class="container" *ngIf="heroes">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Super Power</th>
+      <th scope="col">Description</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-success" *ngFor="let hero of heroes; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{hero.name}}</td>
+      <td>{{hero.superPower}}</td>
+      <td>{{hero.description}}</td>
+      <td>
+        <button class="btn btn-warning" title="edit hero" routerLink="/detail/{{hero.id}}">edit</button>
+        <button class="btn btn-danger" title="delete hero" (click)="delete(hero)">x</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--<button class="btn btn-ld btn-danger" (click)="deleteAll()">Delete all</button>-->
+</div>
+
+<div>
+  <label> Hero name: <input #heroName/></label>
+  <label> Hero super power: <input #superPower/></label>
+  <label> Hero description: <input #description/></label>
+  <button class="btn btn-info"
+          (click)="add(heroName.value, superPower.value, description.value); heroName.value=''; superPower.value=''; description.value=''">
+    add hero
+  </button>
+</div>
